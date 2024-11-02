@@ -1,0 +1,51 @@
+name: 构建AntlrExpr
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+env:
+  BUILD_TYPE: Release
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout github repo
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+        lfs: false
+
+    - name: 安装软件
+      run: |
+        sudo apt -y update
+        sudo apt -y upgrade
+        sudo apt -y install python3 python3-pip
+    
+    - name: 执行权限
+      run: |
+        chmod +x *.sh
+  
+    - name: 下载仓库
+      run: |
+        ./download.sh
+
+    - name: 下载编译器
+      run: |
+        mkdir INSTALL
+        wget https://github.com/mengdemao/rtems_demo/releases/download/compiler/rtems-aarch64.tar.gz
+        wger https://github.com/mengdemao/rtems_demo/releases/download/compiler/rtems-arm.tar.gz
+        tar -vxf rtems-aarch64.tar.gz -C INSTALL
+        tar -vxf rtems-arm.tar.gz -C INSTALL
+    
+    - name: Build Arm stm32f4
+      run: |
+        ./build.sh arm stm32f4
+    
+    - name: Build Aarch64 stm32f4
+      run: |
+        ./build.sh aarch64 a72_lp64_qemu
