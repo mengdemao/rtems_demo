@@ -1,4 +1,4 @@
-name: 构建AntlrExpr
+name: build rtems
 
 on:
   push:
@@ -37,8 +37,8 @@ jobs:
     - name: 下载编译器
       run: |
         mkdir INSTALL
-        wget https://github.com/mengdemao/rtems_demo/releases/download/compiler/rtems-aarch64.tar.gz
-        wger https://github.com/mengdemao/rtems_demo/releases/download/compiler/rtems-arm.tar.gz
+        wget --quiet https://github.com/mengdemao/rtems_demo/releases/download/compiler/rtems-aarch64.tar.gz
+        wget --quiet https://github.com/mengdemao/rtems_demo/releases/download/compiler/rtems-arm.tar.gz
         tar -vxf rtems-aarch64.tar.gz -C INSTALL
         tar -vxf rtems-arm.tar.gz -C INSTALL
     
