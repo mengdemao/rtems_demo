@@ -1,0 +1,27 @@
+diff --git a/misc/regulator/regulator_example.c b/misc/regulator/regulator_example.c
+index 51d0c27..b4d8a80 100644
+--- a/misc/regulator/regulator_example.c
++++ b/misc/regulator/regulator_example.c
+@@ -131,9 +131,9 @@ static void example_send_messages(void)
+     .deliverer_context = NULL,
+     .maximum_message_size = MAXIMUM_MESSAGE_LENGTH,
+     .maximum_messages = 10,
+-    .output_thread_priority = 16,
+-    .output_thread_stack_size = 0,
+-    .output_thread_period = RTEMS_MILLISECONDS_TO_TICKS(1000),
++    .delivery_thread_priority = 16,
++    .delivery_thread_stack_size = 0,
++    .delivery_thread_period = RTEMS_MILLISECONDS_TO_TICKS(1000),
+     .maximum_to_dequeue_per_period = 3
+   };
+ 
+diff --git a/wscript b/wscript
+index fc8eebe..4ff6ae7 100644
+--- a/wscript
++++ b/wscript
+@@ -55,4 +55,4 @@ def rebuild(ctx):
+     waflib.Options.commands.extend(['clean', 'build'])
+ 
+ def tags(ctx):
+-    ctx.exec_command('etags $(find . -name \*.[sSch])', shell = True)
++    ctx.exec_command('etags $(find . -name *.[sSch])', shell = True)
