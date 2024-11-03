@@ -11,9 +11,9 @@ export RTMES_ARCH=$1
 export RTEMS_VERSION=$2
 export PREFIX_PATH=${INSTALL_PATH}/rtems-${RTMES_ARCH}
 
-# pushd rtems/rsb/rtems >>/dev/null || exit
-# ../source-builder/sb-set-builder --prefix=${PREFIX_PATH} ${RTEMS_VERSION}/rtems-${RTMES_ARCH}.bset --jobs=$(nproc)
-# popd >>/dev/null || exit
+pushd rtems/rsb/rtems >>/dev/null || exit
+../source-builder/sb-set-builder --prefix=${PREFIX_PATH} ${RTEMS_VERSION}/rtems-${RTMES_ARCH}.bset --jobs=$(nproc)
+popd >>/dev/null || exit
 
 pushd ${PREFIX_PATH}
 

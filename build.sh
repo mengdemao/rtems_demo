@@ -12,7 +12,8 @@ build_rtems_tools()
     pushd rtems/tools >> /dev/null || exit
     ./waf distclean
     ./waf configure --prefix=${PREFIX_PATH}
-    ./waf build install
+    ./waf build -j$(nproc)
+    ./waf install
     popd >> /dev/null || exit
 }
 
@@ -43,7 +44,7 @@ build_rtems_demo()
     ./waf configure --rtems=${PREFIX_PATH} \
                     --rtems-tools=${PREFIX_PATH}\
                     --rtems-bsps=${RTMES_ARCH}/${RTMES_BSP}
-    ./waf -v
+    ./waf -j$(nproc)
     popd >> /dev/null || exit
 }
 
