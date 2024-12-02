@@ -58,6 +58,6 @@ export CFG_FILE="[${RTMES_ARCH}/${RTMES_BSP}]"
 build_rtems_tools
 build_rtems_sdk
 if [ ${RTMES_ARCH} == aarch64 ]; then
-build_rtems_bsd
+    build_rtems_bsd
 fi
 build_rtems_demo

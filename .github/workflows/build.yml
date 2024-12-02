@@ -45,6 +45,14 @@ jobs:
       run: |
         ./build.sh arm stm32f4
     
-    - name: Build Aarch64 stm32f4
+    - name: Build Arm imx7
+      run: |
+        ./build.sh arm imx7
+    
+    - name: Build Arm realview_pbx_a9_qemu
+      run: |
+        ./build.sh arm realview_pbx_a9_qemu
+
+    - name: Build Aarch64 a72_lp64_qemu
       run: |
         ./build.sh aarch64 a72_lp64_qemu
